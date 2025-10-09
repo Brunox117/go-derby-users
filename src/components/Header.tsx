@@ -6,8 +6,8 @@ import { Menu, User } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 ">
-      <div className="container flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-card">
+      <div className=" flex h-16 items-center justify-between px-4">
         {/* Logo and Navigation */}
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
@@ -30,7 +30,7 @@ export default function Header() {
         </div>
 
         {/* User Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-end space-x-4">
           {/* User Menu */}
           <div className="flex items-center space-x-2">
             <Avatar className="h-8 w-8">
