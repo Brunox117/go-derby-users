@@ -1,103 +1,107 @@
-import Image from "next/image";
+import Header from '@/components/Header';
+import StreamPlayer from '@/components/StreamPlayer';
+import ScoreCard from '@/components/ScoreCard';
+import BettingCard from '@/components/BettingCard';
+import Sidebar from '@/components/Sidebar';
+import { getCurrentFight } from '@/lib/mockData';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Aqui va a ir el proyecto de los gallos
-          </li>
-        </ol>
+  const currentFight = getCurrentFight();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Main Content Area */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Live Stream */}
+            <StreamPlayer 
+              title={currentFight ? 
+                `${currentFight.rooster1.name} vs ${currentFight.rooster2.name}` : 
+                "Derby Championship - Live Stream"
+              }
+              isLive={!!currentFight}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            
+            {/* Score and Betting Cards */}
+            {currentFight && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Score Cards */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Current Scores</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    <ScoreCard
+                      roosterName={currentFight.rooster1.name}
+                      score={currentFight.score1 || 0}
+                      color={currentFight.rooster1.color}
+                      isWinning={(currentFight.score1 || 0) > (currentFight.score2 || 0)}
+                      weight={currentFight.rooster1.weight}
+                      wins={currentFight.rooster1.wins}
+                      losses={currentFight.rooster1.losses}
+                      isCurrentRound={true}
+                    />
+                    <ScoreCard
+                      roosterName={currentFight.rooster2.name}
+                      score={currentFight.score2 || 0}
+                      color={currentFight.rooster2.color}
+                      isWinning={(currentFight.score2 || 0) > (currentFight.score1 || 0)}
+                      weight={currentFight.rooster2.weight}
+                      wins={currentFight.rooster2.wins}
+                      losses={currentFight.rooster2.losses}
+                      isCurrentRound={true}
+                    />
+                  </div>
+                </div>
+
+                {/* Betting Cards */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Live Betting</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    <BettingCard
+                      roosterName={currentFight.rooster1.name}
+                      odds={currentFight.odds1}
+                      color={currentFight.rooster1.color}
+                      isFavorite={currentFight.odds1 < currentFight.odds2}
+                      status="open"
+                    />
+                    <BettingCard
+                      roosterName={currentFight.rooster2.name}
+                      odds={currentFight.odds2}
+                      color={currentFight.rooster2.color}
+                      isFavorite={currentFight.odds2 < currentFight.odds1}
+                      status="open"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* No Live Fight Message */}
+            {!currentFight && (
+              <div className="text-center py-12">
+                <div className="space-y-4">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-muted flex items-center justify-center">
+                    <span className="text-2xl">🐓</span>
+                  </div>
+                  <h3 className="text-xl font-semibold">No Live Fights</h3>
+                  <p className="text-muted-foreground">
+                    Check back later for upcoming derby matches and live betting opportunities.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <Sidebar />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
