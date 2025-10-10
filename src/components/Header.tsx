@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Menu, User } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -11,22 +12,25 @@ export default function Header() {
         {/* Logo and Navigation */}
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">
-                G
-              </span>
+            <div className="h-22 w-22">
+              <Image
+                src={"/logo.png"}
+                alt="GoDerby logo"
+                width={300}
+                height={200}
+              />
             </div>
             <h1 className="text-xl font-bold derby-text-glow">Go Derby</h1>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* <nav className="hidden md:flex items-center space-x-6">
             <Button
               variant="ghost"
               className="text-foreground hover:text-accent"
             >
               Inicio
             </Button>
-          </nav>
+          </nav> */}
         </div>
 
         {/* User Actions */}
