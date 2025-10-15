@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import { getCurrentFight } from "@/lib/mockData";
 import { ChatComponent } from "@/components/ChatComponent";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { BetsComponent } from "@/components/BetsComponent";
 
 export default function Home() {
   const currentFight = getCurrentFight();
@@ -25,11 +26,7 @@ export default function Home() {
               }
               isLive={!!currentFight}
             />
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg font-bold text-center">Gallo 1 vs Gallo 2</CardTitle>
-              </CardHeader>
-            </Card>
+            <BetsComponent />
           </div>
 
           {/* Sidebar */}
