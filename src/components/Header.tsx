@@ -7,8 +7,8 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card">
-      <div className=" flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-gradient-to-r from-black to-[#161560]">
+      <div className=" flex h-20 items-center justify-between px-4">
         {/* Logo and Navigation */}
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
@@ -20,7 +20,9 @@ export default function Header() {
                 height={200}
               />
             </div>
-            <h1 className="text-xl font-bold derby-text-glow">Go Derby</h1>
+            <h1 className="text-xl font-bold derby-text-glow text-white">
+              Go Derby
+            </h1>
           </div>
 
           {/* <nav className="hidden md:flex items-center space-x-6">
@@ -51,7 +53,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <Button variant="ghost" size="icon">
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 text-white" />
           </Button>
         </div>
       </div>

@@ -1,25 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import {
-  MessageSquare,
-  Send,
-  TrendingUp,
-  Trophy,
-  Clock,
-  Users,
-  History,
-  BarChart3,
-} from "lucide-react";
-import {
-  mockBettingHistory,
-  mockStatistics,
-  getRecentFights,
-} from "@/lib/mockData";
+import { MessageSquare, Send, Clock, Users, History } from "lucide-react";
+import { getRecentFights } from "@/lib/mockData";
 
 export default function Sidebar() {
   const [chatMessage, setChatMessage] = useState("");
@@ -55,13 +42,13 @@ export default function Sidebar() {
           className="flex-1 rounded-none"
         >
           <History className="h-4 w-4 mr-2" />
-          History
+          Historial
         </Button>
       </div>
 
       {/* Chat Tab */}
       {activeTab === "chat" && (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full bg-white rounded-lg">
           {/* Chat Header */}
           <div className="flex items-center p-3 border-b border-border">
             <div className="flex items-center space-x-2">
@@ -138,7 +125,7 @@ export default function Sidebar() {
           <div className="p-3 border-t border-border">
             <div className="flex space-x-2">
               <Input
-                placeholder="Type your message..."
+                placeholder="Escribe tu mensaje..."
                 value={chatMessage}
                 onChange={(e) => setChatMessage(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}

@@ -1,19 +1,26 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Play, Pause, Volume2, VolumeX, Maximize, Settings } from 'lucide-react';
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Settings,
+} from "lucide-react";
 
 interface StreamPlayerProps {
   title?: string;
   isLive?: boolean;
 }
 
-export default function StreamPlayer({ 
-  title = "Derby Championship - Live Stream", 
-  isLive = true 
+export default function StreamPlayer({
+  title = "Derby Championship - Live Stream",
+  isLive = true,
 }: StreamPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -50,26 +57,6 @@ export default function StreamPlayer({
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
                 <Play className="h-8 w-8 text-primary" />
               </div>
-              <p className="text-muted-foreground">Live Stream Placeholder</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Real stream integration would go here
-              </p>
-            </div>
-          </div>
-
-          {/* Stream Overlay */}
-          <div className="absolute top-4 left-4">
-            <div className="bg-background/80 backdrop-blur-sm rounded-lg p-2">
-              <p className="text-sm font-medium">Round 3 of 5</p>
-              <p className="text-xs text-muted-foreground">Thunder Strike vs Golden Feather</p>
-            </div>
-          </div>
-
-          {/* Stream Stats */}
-          <div className="absolute top-4 right-4">
-            <div className="bg-background/80 backdrop-blur-sm rounded-lg p-2">
-              <p className="text-sm font-medium">1,247 viewers</p>
-              <p className="text-xs text-muted-foreground">Live now</p>
             </div>
           </div>
         </div>
@@ -77,8 +64,8 @@ export default function StreamPlayer({
         {/* Stream Controls */}
         <div className="flex items-center justify-between p-4 border-t border-border">
           <div className="flex items-center space-x-2">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="icon"
               onClick={() => setIsPlaying(!isPlaying)}
             >
@@ -88,9 +75,9 @@ export default function StreamPlayer({
                 <Play className="h-4 w-4" />
               )}
             </Button>
-            
-            <Button 
-              variant="ghost" 
+
+            <Button
+              variant="ghost"
               size="icon"
               onClick={() => setIsMuted(!isMuted)}
             >
@@ -100,7 +87,7 @@ export default function StreamPlayer({
                 <Volume2 className="h-4 w-4" />
               )}
             </Button>
-            
+
             {!isMuted && (
               <div className="flex items-center space-x-2 ml-2">
                 <input
@@ -111,7 +98,9 @@ export default function StreamPlayer({
                   onChange={(e) => setVolume(Number(e.target.value))}
                   className="w-20 h-1 bg-muted rounded-lg appearance-none cursor-pointer"
                 />
-                <span className="text-xs text-muted-foreground w-8">{volume}%</span>
+                <span className="text-xs text-muted-foreground w-8">
+                  {volume}%
+                </span>
               </div>
             )}
           </div>

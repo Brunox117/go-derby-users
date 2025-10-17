@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @theme inline {
   --color-background: var(--background);
@@ -45,72 +45,39 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #591e1b; /* Marrón oscuro principal */
-  --foreground: #b4b4b4; /* Gris para texto */
-  --card: #591e1b; /* Fondo de cards */
-  --card-foreground: #b4b4b4; /* Texto en cards */
-  --popover: #591e1b;
-  --popover-foreground: #b4b4b4;
-  --primary: #a73434; /* Rojo oscuro para elementos principales */
-  --primary-foreground: #b4b4b4;
-  --secondary: #1d6240; /* Verde oscuro para secundarios */
-  --secondary-foreground: #b4b4b4;
-  --muted: #1d6240;
-  --muted-foreground: #5fa07a; /* Verde claro para texto muted */
-  --accent: #cf8482; /* Rosa suave para accents */
-  --accent-foreground: #591e1b;
-  --destructive: #a73434; /* Rojo oscuro para acciones destructivas */
-  --border: #b4b4b4; /* Gris para bordes */
-  --input: #1d6240;
-  --ring: #c89116; /* Dorado para focus rings */
+  --background: #d8d8d8; /* Gris claro base */
+  --foreground: #2d3748; /* Gris oscuro para texto */
+  --card: #fcfcfc; /* Blanco para cards */
+  --card-foreground: #2d3748; /* Texto oscuro en cards */
+  --popover: #fcfcfc;
+  --popover-foreground: #2d3748;
+  --primary: #a73434; /* Rojo derby para elementos principales */
+  --primary-foreground: #fcfcfc;
+  --secondary: #2d7d32; /* Verde derby más claro */
+  --secondary-foreground: #fcfcfc;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b; /* Gris medio para texto muted */
+  --accent: #fbbf24; /* Amarillo dorado para accents */
+  --accent-foreground: #92400e;
+  --destructive: #dc2626; /* Rojo claro para acciones destructivas */
+  --border: #cbd5e1; /* Gris claro para bordes */
+  --input: #fcfcfc;
+  --ring: #a73434; /* Rojo derby para focus rings */
   --chart-1: #a73434;
-  --chart-2: #5fa07a;
-  --chart-3: #c89116;
-  --chart-4: #cf8482;
-  --chart-5: #1d6240;
-  --sidebar: #1d6240; /* Verde oscuro para sidebar */
-  --sidebar-foreground: #b4b4b4;
-  --sidebar-primary: #c89116; /* Dorado para elementos primarios del sidebar */
-  --sidebar-primary-foreground: #591e1b;
-  --sidebar-accent: #5fa07a; /* Verde claro para accents del sidebar */
-  --sidebar-accent-foreground: #591e1b;
-  --sidebar-border: #b4b4b4;
-  --sidebar-ring: #c89116;
+  --chart-2: #2d7d32;
+  --chart-3: #fbbf24;
+  --chart-4: #f59e0b;
+  --chart-5: #10b981;
+  --sidebar: #fcfcfc; /* Blanco para sidebar */
+  --sidebar-foreground: #2d3748;
+  --sidebar-primary: #a73434; /* Rojo derby para elementos primarios del sidebar */
+  --sidebar-primary-foreground: #fcfcfc;
+  --sidebar-accent: #f1f5f9; /* Gris muy claro para accents del sidebar */
+  --sidebar-accent-foreground: #2d3748;
+  --sidebar-border: #cbd5e1;
+  --sidebar-ring: #a73434;
 }
 
-.dark {
-  --background: #591e1b; /* Marrón oscuro principal */
-  --foreground: #b4b4b4; /* Gris para texto */
-  --card: #1d6240; /* Verde oscuro para cards en dark mode */
-  --card-foreground: #b4b4b4;
-  --popover: #1d6240;
-  --popover-foreground: #b4b4b4;
-  --primary: #a73434; /* Rojo oscuro para elementos principales */
-  --primary-foreground: #b4b4b4;
-  --secondary: #5fa07a; /* Verde claro para secundarios en dark mode */
-  --secondary-foreground: #591e1b;
-  --muted: #1d6240;
-  --muted-foreground: #cf8482; /* Rosa suave para texto muted */
-  --accent: #c89116; /* Dorado para accents en dark mode */
-  --accent-foreground: #591e1b;
-  --destructive: #a73434;
-  --border: #b4b4b4;
-  --input: #1d6240;
-  --ring: #c89116;
-  --chart-1: #a73434;
-  --chart-2: #5fa07a;
-  --chart-3: #c89116;
-  --chart-4: #cf8482;
-  --chart-5: #1d6240;
-  --sidebar: #1d6240; /* Verde oscuro para sidebar */
-  --sidebar-foreground: #b4b4b4;
-  --sidebar-primary: #c89116; /* Dorado para elementos primarios del sidebar */
-  --sidebar-primary-foreground: #591e1b;
-  --sidebar-accent: #5fa07a; /* Verde claro para accents del sidebar */
-  --sidebar-accent-foreground: #591e1b;
-  --sidebar-border: #b4b4b4;
-  --sidebar-ring: #c89116;
-}
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -122,15 +89,15 @@
 
 /* Custom Derby Betting Styles */
 .derby-gradient {
-  background: linear-gradient(135deg, #591e1b 0%, #1d6240 100%);
+  background: linear-gradient(135deg, #3316a7 0%, #2d7d32 100%);
 }
 
 .derby-glow {
-  box-shadow: 0 0 20px rgba(200, 145, 22, 0.3);
+  box-shadow: 0 0 20px rgba(33, 50, 134, 0.3);
 }
 
 .derby-text-glow {
-  text-shadow: 0 0 10px rgba(200, 145, 22, 0.5);
+  text-shadow: 0 0 10px rgba(33, 50, 134, 0.5);
 }
 
 .live-indicator {
@@ -138,10 +105,11 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
