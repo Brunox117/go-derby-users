@@ -1,18 +1,28 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-  FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aquí iría la lógica de autenticación
+    // Por ahora, redireccionamos directamente a la página principal
+    router.push("/");
+  };
+
   return (
     <div>
-      <form className="mb-6">
+      <form className="mb-6" onSubmit={handleSubmit}>
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="text-xl font-bold">Bienvenido a Go Derby</h1>

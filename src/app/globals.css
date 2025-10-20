@@ -113,3 +113,18 @@
     opacity: 0.5;
   }
 }
+
+/* Custom Fonts */
+@font-face {
+  font-family: "Mestizo";
+  src: url("../lib/fonts/MestizoFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .font-mestizo {
+    font-family: "Mestizo", sans-serif;
+  }
+}

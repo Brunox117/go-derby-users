@@ -27,7 +27,7 @@ export default function Header() {
                 height={200}
               />
             </div>
-            <h1 className="text-xl font-bold derby-text-glow text-white">
+            <h1 className="font-mestizo text-xl font-bold derby-text-glow text-white">
               Go Derby
             </h1>
           </div>
