@@ -3,7 +3,6 @@ import StreamPlayer from "@/components/StreamPlayer";
 import Sidebar from "@/components/Sidebar";
 import { getCurrentFight } from "@/lib/mockData";
 import { ChatComponent } from "@/components/ChatComponent";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { BetsComponent } from "@/components/BetsComponent";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       <div className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Content Area */}

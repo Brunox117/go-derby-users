@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Go Derby - Live Cockfighting & Betting",
-  description: "Watch live cockfighting matches and place your bets. Experience the thrill of derby betting with real-time streaming and live odds.",
+  description:
+    "Watch live cockfighting matches and place your bets. Experience the thrill of derby betting with real-time streaming and live odds.",
 };
 
 export default function RootLayout({

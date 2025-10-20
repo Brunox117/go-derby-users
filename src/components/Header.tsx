@@ -2,8 +2,15 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Menu, User } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -38,23 +45,25 @@ export default function Header() {
         {/* User Actions */}
         <div className="flex items-end space-x-4">
           {/* User Menu */}
-          <div className="flex items-center space-x-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
-              <AvatarFallback className="bg-accent text-accent-foreground">
-                <User className="h-4 w-4" />
-              </AvatarFallback>
-            </Avatar>
-            <div className="hidden md:block">
-              <p className="text-sm font-medium">Bruno</p>
-              <p className="text-xs text-muted-foreground">$1,250.00</p>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon">
-            <Menu className="h-5 w-5 text-white" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
+                  <AvatarFallback className="bg-accent text-accent-foreground">
+                    <User className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuItem>Mi perfil</DropdownMenuItem>
+              <DropdownMenuItem>Mis apuestas</DropdownMenuItem>
+              <Link href="/auth/login">
+                <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
