@@ -4,14 +4,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Maximize,
-  Settings,
-} from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 
 interface StreamPlayerProps {
   title?: string;
@@ -35,14 +28,11 @@ export default function StreamPlayer({
             <h2 className="text-lg font-semibold">{title}</h2>
             {isLive && (
               <Badge variant="destructive" className="live-indicator">
-                LIVE
+                EN VIVO
               </Badge>
             )}
           </div>
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
-              <Settings className="h-4 w-4" />
-            </Button>
             <Button variant="ghost" size="icon">
               <Maximize className="h-4 w-4" />
             </Button>

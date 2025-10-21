@@ -17,11 +17,7 @@ export default function Home() {
           <div className="lg:col-span-3 space-y-6">
             {/* Live Stream */}
             <StreamPlayer
-              title={
-                currentFight
-                  ? `${currentFight.rooster1.name} vs ${currentFight.rooster2.name}`
-                  : "Derby Championship - Live Stream"
-              }
+              title={"Gallo 1 vs Gallo 2"}
               isLive={!!currentFight}
             />
             <BetsComponent />

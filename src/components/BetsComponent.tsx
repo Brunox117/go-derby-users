@@ -15,6 +15,7 @@ export const BetsComponent = () => {
               Apuestas abiertas
             </h2>
           </div>
+          <div className="text-center text-md mt-2">Tu saldo es: $100</div>
           <div className="grid grid-cols-2 gap-2 flex-col justify-around mt-5">
             <div className="justify-center items-center border rounded-md p-2">
               <p className="mb-4 text-md font-bold text-center bg-green-700 text-white rounded-md p-1 max-w-lg">
