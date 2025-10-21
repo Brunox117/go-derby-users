@@ -14,7 +14,8 @@ export default function Register() {
       <form className="mb-6">
         <FieldGroup>
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="text-xl font-bold">Bienvenido a Go Derby</h1>
+            <h1 className="text-xl font-bold">Bienvenido a</h1>
+            <h1 className="font-mestizo text-xl font-bold">Go Derby</h1>
             <FieldDescription>
               Ya tienes una cuenta?{" "}
               <Link href="/auth/login">Inicia sesión aquí</Link>

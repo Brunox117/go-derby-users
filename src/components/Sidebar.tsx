@@ -162,17 +162,12 @@ export default function Sidebar() {
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>Winner: {fight.winner}</span>
+                    <span>Ganador: {fight.winner}</span>
                     <span>
-                      Score: {fight.score1} - {fight.score2}
+                      Marcador: {fight.score1} - {fight.score2}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Odds:</span>
-                    <span>
-                      {fight.odds1} / {fight.odds2}
-                    </span>
-                  </div>
+                  <div className="flex items-center justify-between text-xs"></div>
                 </div>
               </Card>
             ))}
