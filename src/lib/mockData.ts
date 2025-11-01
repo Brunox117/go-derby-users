@@ -26,8 +26,10 @@ export interface BettingHistory {
   fightId: string;
   roosterName: string;
   betAmount: number;
-  odds: number;
-  result: "pending" | "won" | "lost";
+  result: {
+    status: "pending" | "won" | "lost";
+    amount: number;
+  };
   timestamp: string;
 }
 
@@ -133,8 +135,10 @@ export const mockBettingHistory: BettingHistory[] = [
     fightId: "1",
     roosterName: "Thunder Strike",
     betAmount: 100,
-    odds: 1.85,
-    result: "pending",
+    result: {
+      status: "pending",
+      amount: 0,
+    },
     timestamp: "2024-01-15T20:25:00Z",
   },
   {
@@ -142,8 +146,10 @@ export const mockBettingHistory: BettingHistory[] = [
     fightId: "4",
     roosterName: "Thunder Strike",
     betAmount: 50,
-    odds: 2.35,
-    result: "won",
+    result: {
+      status: "won",
+      amount: 100,
+    },
     timestamp: "2024-01-15T19:20:00Z",
   },
   {
@@ -151,8 +157,10 @@ export const mockBettingHistory: BettingHistory[] = [
     fightId: "4",
     roosterName: "Midnight Warrior",
     betAmount: 75,
-    odds: 1.6,
-    result: "lost",
+    result: {
+      status: "lost",
+      amount: 0,
+    },
     timestamp: "2024-01-15T19:15:00Z",
   },
 ];

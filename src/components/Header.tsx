@@ -20,12 +20,14 @@ export default function Header() {
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
             <div className="h-22 w-22">
-              <Image
-                src={"/logo.png"}
-                alt="GoDerby logo"
-                width={300}
-                height={200}
-              />
+              <Link href="/">
+                <Image
+                  src={"/logo.png"}
+                  alt="GoDerby logo"
+                  width={300}
+                  height={200}
+                />
+              </Link>
             </div>
             <h1 className="font-mestizo text-xl font-bold derby-text-glow text-white">
               Go Derby
@@ -58,7 +60,9 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
               <DropdownMenuItem>Mi perfil</DropdownMenuItem>
-              <DropdownMenuItem>Mis apuestas</DropdownMenuItem>
+              <Link href="/mybets">
+                <DropdownMenuItem>Mis apuestas</DropdownMenuItem>
+              </Link>
               <Link href="/auth/login">
                 <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
               </Link>
