@@ -13,10 +13,14 @@ export default function MyBets() {
 
   const filteredBets = useMemo(() => {
     if (filter === "pending") {
-      return mockBettingHistory.filter((bet) => bet.result === "pending");
+      return mockBettingHistory.filter(
+        (bet) => bet.result.status === "pending"
+      );
     }
     if (filter === "completed") {
-      return mockBettingHistory.filter((bet) => bet.result !== "pending");
+      return mockBettingHistory.filter(
+        (bet) => bet.result.status !== "pending"
+      );
     }
     return mockBettingHistory;
   }, [filter]);
@@ -24,21 +28,25 @@ export default function MyBets() {
   const statistics = useMemo(() => {
     const total = mockBettingHistory.length;
     const pending = mockBettingHistory.filter(
-      (b) => b.result === "pending"
+      (b) => b.result.status === "pending"
     ).length;
-    const won = mockBettingHistory.filter((b) => b.result === "won").length;
-    const lost = mockBettingHistory.filter((b) => b.result === "lost").length;
+    const won = mockBettingHistory.filter(
+      (b) => b.result.status === "won"
+    ).length;
+    const lost = mockBettingHistory.filter(
+      (b) => b.result.status === "lost"
+    ).length;
     const totalWagered = mockBettingHistory.reduce(
       (sum, bet) => sum + bet.betAmount,
       0
     );
     const totalWon = mockBettingHistory
-      .filter((b) => b.result === "won")
-      .reduce((sum, bet) => sum + bet.betAmount * bet.odds, 0);
+      .filter((b) => b.result.status === "won")
+      .reduce((sum, bet) => sum + bet.result.amount, 0);
     const totalLost = mockBettingHistory
-      .filter((b) => b.result === "lost")
+      .filter((b) => b.result.status === "lost")
       .reduce((sum, bet) => sum + bet.betAmount, 0);
-    const netProfit = totalWon - totalLost;
+    const netProfit = totalWon;
     const winRate = total > 0 ? ((won / (won + lost)) * 100).toFixed(1) : "0";
 
     return {
@@ -68,7 +76,7 @@ export default function MyBets() {
       </div>
 
       {/* Statistics Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm font-medium text-muted-foreground mb-2">
@@ -103,14 +111,10 @@ export default function MyBets() {
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm font-medium text-muted-foreground mb-2">
-              Ganancia Neta
+              Ganancia
             </p>
-            <div
-              className={`text-2xl font-bold ${
-                statistics.netProfit >= 0 ? "text-green-500" : "text-red-500"
-              }`}
-            >
-              ${statistics.netProfit.toFixed(2)}
+            <div className={`text-2xl font-bold text-green-500`}>
+              ${statistics.totalWon.toFixed(2)}
             </div>
           </CardContent>
         </Card>

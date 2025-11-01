@@ -20,7 +20,7 @@ export function BetCard({ bet, fight }: BetCardProps) {
     });
   };
 
-  const getStatusBadge = (result: BettingHistory["result"]) => {
+  const getStatusBadge = (result: BettingHistory["result"]["status"]) => {
     switch (result) {
       case "pending":
         return (
@@ -52,14 +52,6 @@ export function BetCard({ bet, fight }: BetCardProps) {
     }
   };
 
-  const potentialWinnings = bet.betAmount * bet.odds;
-  const actualWinnings =
-    bet.result === "won"
-      ? bet.betAmount * bet.odds
-      : bet.result === "lost"
-      ? 0
-      : null;
-
   return (
     <Card>
       <CardHeader>
@@ -71,7 +63,7 @@ export function BetCard({ bet, fight }: BetCardProps) {
                   ? `${fight.rooster1.name} vs ${fight.rooster2.name}`
                   : "Pelea"}
               </CardTitle>
-              {getStatusBadge(bet.result)}
+              {getStatusBadge(bet.result.status)}
             </div>
             <p className="text-sm text-muted-foreground">
               {formatDate(bet.timestamp)}
@@ -80,7 +72,7 @@ export function BetCard({ bet, fight }: BetCardProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className="text-sm text-muted-foreground mb-1">Gallo Apostado</p>
             <p className="text-lg font-semibold">{bet.roosterName}</p>
@@ -89,66 +81,23 @@ export function BetCard({ bet, fight }: BetCardProps) {
             <p className="text-sm text-muted-foreground mb-1">Monto Apostado</p>
             <p className="text-lg font-semibold">${bet.betAmount.toFixed(2)}</p>
           </div>
-          <div>
-            <p className="text-sm text-muted-foreground mb-1">Cuotas</p>
-            <p className="text-lg font-semibold">{bet.odds.toFixed(2)}x</p>
-          </div>
         </div>
 
-        <Separator className="my-4" />
-
-        <div className="flex justify-between items-center">
-          {bet.result === "pending" ? (
-            <>
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  Ganancia Potencial
-                </p>
-                <p className="text-xl font-bold text-green-500">
-                  ${potentialWinnings.toFixed(2)}
-                </p>
-              </div>
-              <Badge
-                variant="secondary"
-                className="bg-blue-100 text-blue-800 border-blue-300"
-              >
-                En curso
-              </Badge>
-            </>
-          ) : bet.result === "won" ? (
-            <>
+        {bet.result.status === "won" && (
+          <>
+            <Separator className="my-4" />
+            <div className="flex justify-between items-center">
               <div>
                 <p className="text-sm text-muted-foreground">
                   Ganancia Obtenida
                 </p>
                 <p className="text-xl font-bold text-green-500">
-                  ${actualWinnings!.toFixed(2)}
+                  ${bet.result.amount.toFixed(2)}
                 </p>
               </div>
-              <Badge
-                variant="default"
-                className="bg-green-100 text-green-800 border-green-300"
-              >
-                Ganaste ${(actualWinnings! - bet.betAmount).toFixed(2)}
-              </Badge>
-            </>
-          ) : (
-            <>
-              <div>
-                <p className="text-sm text-muted-foreground">Resultado</p>
-                <p className="text-xl font-bold text-red-500">
-                  ${bet.betAmount.toFixed(2)}
-                </p>
-              </div>
-              <Badge
-                variant="default"
-                className="bg-red-100 text-red-800 border-red-300"
-              >
-                Perdiste ${bet.betAmount.toFixed(2)}
-              </Badge>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </CardContent>
     </Card>
   );
